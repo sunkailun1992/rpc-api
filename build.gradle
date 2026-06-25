@@ -1,0 +1,72 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com'
+version = '1.0.0'
+description = 'rpc-api'
+
+def aliyunMavenReleaseUrl = 'https://packages.aliyun.com/695230d97a1ed8d3da00b21e/maven/2633353-release-no0hfp'
+
+def aliyunMavenUsername = providers.gradleProperty('aliyunMavenUsername').orElse(providers.environmentVariable('ALIYUN_MAVEN_USERNAME'))
+
+def aliyunMavenPassword = providers.gradleProperty('aliyunMavenPassword').orElse(providers.environmentVariable('ALIYUN_MAVEN_PASSWORD'))
+
+ext {
+    javaReleaseVersion = 17
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaReleaseVersion)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = javaReleaseVersion
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+    options.docEncoding = 'UTF-8'
+    options.addStringOption('Xdoclint:none', '-quiet')
+    failOnError = false
+}
+
+tasks.withType(GenerateModuleMetadata).configureEach {
+    enabled = false
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'rpc-api'
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            name = 'aliyunRelease'
+            url = uri(aliyunMavenReleaseUrl)
+            credentials {
+                username = aliyunMavenUsername.orNull
+                password = aliyunMavenPassword.orNull
+            }
+        }
+    }
+}
