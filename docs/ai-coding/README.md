@@ -6,10 +6,11 @@
 
 1. `../../AGENTS.md`
 2. `RPC_API_CODING_SPEC.md`
-3. `VERSIONING_SPEC.md`
-4. `BRANCHING_SPEC.md`
-5. `SECURITY_CODING_SPEC.md`
-6. `MIGRATION_SCOPE.md`
+3. `TESTING_SPEC.md`
+4. `VERSIONING_SPEC.md`
+5. `BRANCHING_SPEC.md`
+6. `SECURITY_CODING_SPEC.md`
+7. `MIGRATION_SCOPE.md`
 
 ## 修改前检查
 
@@ -17,6 +18,7 @@
 - 确认是否能用新增字段或新增方法保持兼容，避免直接删除或改类型。
 - 确认 provider 和 consumer 是否已同步升级到同一个 `com:rpc-api:<version>`。
 - 确认 CI 是否能先发布 `rpc-api` 到 Maven Local，再编译消费者。
+- 确认测试符合 `TESTING_SPEC.md`：契约库以单元/兼容测试为主，provider/consumer 真实链路在业务服务验证。
 
 ## 完成标准
 

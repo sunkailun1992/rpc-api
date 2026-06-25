@@ -16,10 +16,11 @@
 1. `README.md`：确认契约包定位、构建发布和消费者验证要求。
 2. `docs/ai-coding/README.md`：确认 AI 编码入口、修改前检查和文档维护要求。
 3. `docs/ai-coding/RPC_API_CODING_SPEC.md`：确认接口、DTO、provider、consumer 和 `utils` 边界。
-4. `docs/ai-coding/VERSIONING_SPEC.md`：确认版本号、兼容性和消费者同步规则。
-5. `docs/ai-coding/BRANCHING_SPEC.md`：确认分支命名、短分支生命周期、release/hotfix、tag 和清理规则。
-6. `docs/ai-coding/SECURITY_CODING_SPEC.md`：涉及用户、权限、租户、数据范围、token、上下文或脱敏字段时必须阅读。
-7. `docs/ai-coding/MIGRATION_SCOPE.md`：确认从其他项目迁移过来的通用规范范围和不迁移原因。
+4. `docs/ai-coding/TESTING_SPEC.md`：确认契约库测试、AssertJ 断言和消费者编译验证边界。
+5. `docs/ai-coding/VERSIONING_SPEC.md`：确认版本号、兼容性和消费者同步规则。
+6. `docs/ai-coding/BRANCHING_SPEC.md`：确认分支命名、短分支生命周期、release/hotfix、tag 和清理规则。
+7. `docs/ai-coding/SECURITY_CODING_SPEC.md`：涉及用户、权限、租户、数据范围、token、上下文或脱敏字段时必须阅读。
+8. `docs/ai-coding/MIGRATION_SCOPE.md`：确认从其他项目迁移过来的通用规范范围和不迁移原因。
 
 ## 项目边界
 
@@ -35,6 +36,7 @@
 - 只要本次任务修改了生产源码或构建脚本，就必须按 `VERSIONING_SPEC.md` 提升一次 `build.gradle` 中的 `version`。
 - DTO 字段只能新增兼容字段，不能随意改名、改类型或删除；破坏性变更必须走新接口、新 DTO 或主版本升级。
 - 所有跨服务上下文字段优先通过 Dubbo attachment / filter 透传，不写进每个业务方法参数；确实是业务查询条件的字段才进入接口参数。
+- 测试分层按 `docs/ai-coding/TESTING_SPEC.md` 执行；本仓库以契约单元/兼容测试为主，不默认启动 Spring Boot。
 
 ## 验证命令
 
