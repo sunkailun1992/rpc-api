@@ -29,6 +29,7 @@
 - 不放 Spring Boot 启动类、不放 `application-*.yml`、不放 Nacos import、不放数据源或注册中心地址。
 - 不依赖 `utils`，避免契约层反向依赖公共运行时包。
 - `utils` 可以提供 Dubbo 上下文透传过滤器和公共配置，但不得维护业务 RPC 接口。
+- 本仓库不维护数据库初始化脚本；涉及业务服务空库初始化或 Seata AT `undo_log` 报错时，AI 规范必须指向 `../utils/src/main/resources/db/common-infra-schema.sql`，由目标业务库手动执行。
 
 ## 修改门禁
 
