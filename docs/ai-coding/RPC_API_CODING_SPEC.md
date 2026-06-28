@@ -12,7 +12,7 @@
 
 - 契约统一放在 `com.kellen.rpc.<domain>`。
 - 用户中心契约放在 `com.kellen.rpc.user`。
-- 新领域按业务边界建包，例如 `com.kellen.rpc.message`、`com.kellen.rpc.ai`。
+- 新领域按业务边界建包，例如 `com.kellen.rpc.message`、`com.kellen.rpc.ai`、`com.kellen.rpc.rag`。
 
 ## 接口规则
 
