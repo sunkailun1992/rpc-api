@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com'
-version = '1.0.0'
+version = '1.0.1'
 description = 'rpc-api'
 
 def aliyunMavenReleaseUrl = 'https://packages.aliyun.com/695230d97a1ed8d3da00b21e/maven/2633353-release-no0hfp'
