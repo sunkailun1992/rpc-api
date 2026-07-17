@@ -4,14 +4,15 @@ plugins {
 }
 
 group = 'com'
-version = '1.0.5'
+version = '1.0.6'
 description = 'rpc-api'
 
-def aliyunMavenReleaseUrl = 'https://packages.aliyun.com/695230d97a1ed8d3da00b21e/maven/2633353-release-no0hfp'
-
-def aliyunMavenUsername = providers.gradleProperty('aliyunMavenUsername').orElse(providers.environmentVariable('ALIYUN_MAVEN_USERNAME'))
-
-def aliyunMavenPassword = providers.gradleProperty('aliyunMavenPassword').orElse(providers.environmentVariable('ALIYUN_MAVEN_PASSWORD'))
+def privateMavenUrl = providers.gradleProperty('privateMavenUrl')
+        .orElse(providers.environmentVariable('PRIVATE_MAVEN_URL'))
+def privateMavenUsername = providers.gradleProperty('privateMavenUsername')
+        .orElse(providers.environmentVariable('PRIVATE_MAVEN_USERNAME'))
+def privateMavenPassword = providers.gradleProperty('privateMavenPassword')
+        .orElse(providers.environmentVariable('PRIVATE_MAVEN_PASSWORD'))
 
 ext {
     javaReleaseVersion = 17
@@ -46,6 +47,24 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    if (privateMavenUrl.isPresent()) {
+        maven {
+            name = 'privateRelease'
+            url = uri(privateMavenUrl.get())
+            if (privateMavenUsername.isPresent() && privateMavenPassword.isPresent()) {
+                credentials {
+                    username = privateMavenUsername.get()
+                    password = privateMavenPassword.get()
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:6.0.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -60,12 +79,16 @@ publishing {
     }
     repositories {
         mavenLocal()
-        maven {
-            name = 'aliyunRelease'
-            url = uri(aliyunMavenReleaseUrl)
-            credentials {
-                username = aliyunMavenUsername.orNull
-                password = aliyunMavenPassword.orNull
+        if (privateMavenUrl.isPresent()) {
+            maven {
+                name = 'privateRelease'
+                url = uri(privateMavenUrl.get())
+                if (privateMavenUsername.isPresent() && privateMavenPassword.isPresent()) {
+                    credentials {
+                        username = privateMavenUsername.get()
+                        password = privateMavenPassword.get()
+                    }
+                }
             }
         }
     }

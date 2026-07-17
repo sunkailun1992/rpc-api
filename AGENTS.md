@@ -7,7 +7,7 @@
 - 项目名称：`rpc-api`
 - 项目类型：Java 17 / Gradle `java-library` / Maven 契约包
 - 发布坐标：`com:rpc-api`
-- 当前版本：`1.0.0`
+- 当前版本：`1.0.6`
 - 主要消费者：同级 `../user`、`../message`、`../ai`、`../ai-agent`、`../gateway`
 - 核心风险：RPC 契约破坏消费者、DTO 泄露内部实体字段、接口版本不兼容、把运行时配置或业务实现放进契约包
 
