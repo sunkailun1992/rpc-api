@@ -4,3 +4,13 @@ out/
 *.iml
 .idea/
 .DS_Store
+
+### Generated artifacts ###
+*.class
+/bin/
+/target/
+/.classpath
+/.project
+/.settings/
+*.ipr
+*.iws

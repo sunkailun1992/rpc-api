@@ -26,3 +26,5 @@
 - `bash scripts/check-secrets.sh` 通过。
 - 直接 provider 和 consumer 编译通过。
 - 文档说明了兼容性、版本号和调用方迁移方式。
+
+- 发布契约新版本时读回远程 POM、JAR、sourcesJar、javadocJar 与校验值；仅 Git 推送不算制品交付。纯规范文档不升版、不重复发布旧制品。
