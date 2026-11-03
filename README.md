@@ -2,7 +2,7 @@
 
 `rpc-api` 是 Java 微服务之间的 Dubbo RPC 契约包，只维护接口、DTO、枚举和值对象。
 
-- Maven 坐标：`com:rpc-api:1.0.6`
+- Maven 坐标：`com:rpc-api:1.0.7`
 - Java 版本：17
 - 主要消费者：`user`、`message`、`ai`、`ai-agent`、`gateway`
 - 职责边界：不包含 provider 实现、controller、数据库访问、Spring Boot 启动类、Nacos 配置或业务运行时配置。
@@ -18,7 +18,7 @@
 业务服务通过下面的坐标引入：
 
 ```gradle
-implementation "com:rpc-api:1.0.6"
+implementation "com:rpc-api:1.0.7"
 ```
 
 ## 契约归属
@@ -49,3 +49,5 @@ AI 或人类修改本仓库前先读：
 3. `docs/ai-coding/RPC_API_CODING_SPEC.md`
 4. `docs/ai-coding/VERSIONING_SPEC.md`
 5. `docs/ai-coding/BRANCHING_SPEC.md`
+
+开放接口认证提供 `verifyRequiredOpenApiSignature` 严格入口：只接受显式开启签名的客户端，服务端验证 HMAC、时钟和一次性 nonce 后返回 true。消费者必须要求 true，不得回退到保留可选签名语义的 `verifyOpenApiSignature`。升级该能力时 provider/consumer 同步使用 1.0.7。
