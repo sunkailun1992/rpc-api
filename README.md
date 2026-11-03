@@ -40,6 +40,8 @@ bash scripts/check-secrets.sh
 ./gradlew publish
 ```
 
+个人制品保持 `com:rpc-api:1.0.7`，公共能力库使用 `com:utils:1.5.1`；美联对应制品使用 `com.kellen:rpc-api` 和 `com.kellen:utils`。两边共用同一个阿里云 Maven 地址，通过 group 隔离制品路径并独立发布版本。个人消费者必须引用 `com` 坐标，不能混用美联制品；Java package `com.kellen.*` 与 Maven group 无关。发布前检查目标版本是否已存在，已有 release 不重复覆盖。
+
 ## AI 编程规范
 
 AI 或人类修改本仓库前先读：

@@ -9,6 +9,8 @@ version = '1.0.0'
 
 `rpc-api` 发布坐标固定为 `com:rpc-api:<version>`。
 
+个人公共制品固定使用 `com:rpc-api` 和 `com:utils`；美联公共制品使用 `com.kellen:rpc-api` 和 `com.kellen:utils`。同一个远程 Maven 地址不代表同一个制品，两边按 group 隔离并独立递增版本。同步代码时不得把美联坐标或依赖覆盖到个人项目，Java package `com.kellen.*` 不随 Maven group 改名。
+
 ## 递增规则
 
 - 补丁版本：兼容新增接口、兼容新增 DTO 字段、文档外的构建修复，例如 `1.0.0 -> 1.0.1`。
