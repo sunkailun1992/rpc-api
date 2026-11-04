@@ -14,3 +14,7 @@ out/
 /.settings/
 *.ipr
 *.iws
+
+# IDE 生成文件与编译输出不进入仓库；源码和共享运行配置继续跟踪。
+/.factorypath
+/.apt_generated/
