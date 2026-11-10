@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com'
-version = '1.0.7'
+version = '1.0.8'
 description = 'rpc-api'
 
 def privateMavenUrl = providers.gradleProperty('privateMavenUrl')

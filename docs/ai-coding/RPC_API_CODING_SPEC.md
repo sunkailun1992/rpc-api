@@ -59,3 +59,5 @@ RPC 调用默认分三类上下文：
 - 流量治理上下文：`release.version`、`traffic.lane`、`canary.tag`、`traffic.weight`。
 
 这些字段应由 `utils` 的 Dubbo 过滤器和网关/前端请求头桥接，不应重复写进每个 RPC 方法签名。
+
+认证 bootstrap `AuthSessionRpcService` 的 access token 是验证对象本身，因此作为输入参数传递；它不得出现在输出 DTO、日志或异常中。provider 必须独立验证签名、生命周期、有效账号和租户授权；输出只含最小 userId/tenantId。调用方未经验证的 tenant attachment 不是该契约的授权依据。
