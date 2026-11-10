@@ -23,12 +23,12 @@ class MemoryRpcDTOTest {
         request.setSourceTenantId("172");
         request.setPatientId("patient-1");
         request.setConversationId("conversation-1");
-        request.setSourceType("QUESTIONNAIRE_SESSION");
+        request.setSourceType("DOCUMENT_ANALYSIS");
         request.setSourceId("session-1");
-        request.setMemoryType("questionnaire_summary");
-        request.setMemoryKey("questionnaire:summary");
-        request.setTitle("问卷摘要");
-        request.setContent("患者完成问卷");
+        request.setMemoryType("document_summary");
+        request.setMemoryKey("document:summary");
+        request.setTitle("文档摘要");
+        request.setContent("合成文档分析完成");
         request.setFactsJson("{\"score\":1}");
         request.setConfidence(0.9);
         request.setRequiresHumanReview(false);
@@ -48,7 +48,7 @@ class MemoryRpcDTOTest {
         assertEquals("ai-agent", request.getCaller());
         assertEquals("172", request.getSourceTenantId());
         assertEquals("patient-1", request.getPatientId());
-        assertEquals("questionnaire:summary", request.getMemoryKey());
+        assertEquals("document:summary", request.getMemoryKey());
         assertEquals(0.9, request.getConfidence());
         assertTrue(dto.isSuccess());
         assertEquals("ACCEPTED", dto.getStatus());
