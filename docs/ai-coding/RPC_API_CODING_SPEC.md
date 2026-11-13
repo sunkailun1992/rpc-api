@@ -6,7 +6,7 @@
 - `utils`：只放 Dubbo 上下文透传、通用配置、通用工具和中间件适配。
 - provider 服务：实现 `rpc-api` 接口，使用 `@DubboService` 发布。
 - consumer 服务：引用 `rpc-api` 接口，使用 `@DubboReference` 调用。
-- gateway/admin-web/小程序：只能通过 HTTP 入口访问，不直接承载 RPC 契约。
+- gateway/admin-web：只能通过 HTTP 入口访问，不直接承载 RPC 契约。
 
 ## 包名
 

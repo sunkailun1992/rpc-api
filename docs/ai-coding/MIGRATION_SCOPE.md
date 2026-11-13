@@ -19,7 +19,7 @@
 - `ENVIRONMENT_CONFIG_SPEC.md`：`rpc-api` 无 dev/test/prod 运行 profile，不迁移。
 - `UTILS_TOOL_CATALOG.md`：这是 `utils` 的工具目录，迁移会混淆公共工具包与契约包边界。
 - `PACKAGE_REFACTOR_GUIDE.md`：主要用于 `utils` 包结构治理，`rpc-api` 只保留 `com.kellen.rpc.<domain>` 规则。
-- 前端、小程序、Swagger 聚合、网关路由模板：这些属于运行服务和展示层，不属于契约包。
+- 前端、Swagger 聚合、网关路由模板：这些属于运行服务和展示层，不属于契约包。
 
 ## 后续补充原则
 
