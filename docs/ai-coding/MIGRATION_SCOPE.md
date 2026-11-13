@@ -11,7 +11,7 @@
 - `SECURITY_CODING_SPEC.md`：DTO 字段安全、权限边界和上下文安全。
 - `RPC_API_CODING_SPEC.md`：契约分层、接口、DTO、provider、consumer、上下文透传规则。
 - `scripts/check-secrets.sh`：沿用通用密钥告警扫描脚本。
-- `.github/workflows/ci.yml`：沿用 Java 17 编译、测试、发布到 Maven Local 和密钥扫描门禁。
+- `.github/workflows/ci.yml`：使用 Java 21 编译、测试、发布到 Maven Local 和密钥扫描门禁。
 
 ## 未迁移
 

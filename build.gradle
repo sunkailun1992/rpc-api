@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com'
-version = '1.0.8'
+version = '1.0.9'
 description = 'rpc-api'
 
 def privateMavenUrl = providers.gradleProperty('privateMavenUrl')
@@ -15,7 +15,7 @@ def privateMavenPassword = providers.gradleProperty('privateMavenPassword')
         .orElse(providers.environmentVariable('PRIVATE_MAVEN_PASSWORD'))
 
 ext {
-    javaReleaseVersion = 17
+    javaReleaseVersion = 21
 }
 
 java {
@@ -50,7 +50,7 @@ tasks.named('test') {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url = 'https://maven.aliyun.com/repository/public' }
     if (privateMavenUrl.isPresent()) {
         maven {
             name = 'privateRelease'
