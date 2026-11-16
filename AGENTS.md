@@ -41,7 +41,7 @@
 - 不依赖 `utils`，避免契约层反向依赖公共运行时包。
 - 个人公共包使用 `com:rpc-api` / `com:utils`；美联使用 `com.kellen:rpc-api` / `com.kellen:utils`。共用远程 Maven 地址时也必须保持 group 隔离，各自独立发布版本，禁止同步公司构建坐标覆盖个人坐标。
 - `utils` 可以提供 Dubbo 上下文透传过滤器和公共配置，但不得维护业务 RPC 接口。
-- 本仓库不维护数据库初始化脚本；涉及业务服务空库初始化或 Seata AT `undo_log` 报错时，AI 规范必须指向 `../utils/src/main/resources/db/common-infra-schema.sql`，由目标业务库手动执行。
+- 本仓库不维护数据库脚本；业务服务的表结构（含 Seata AT 的 `undo_log`）只由各服务自己的 Flyway 迁移管理，空库首次启动由迁移建表，不手工执行公共脚本。
 - 本仓库不设计数据库表、不生成 DDL；涉及新增表回到 provider 所属业务服务，并按其 `PROJECT_CODING_SPEC.md` 或 `AI_CODING_GUIDE.md` 表设计规范处理。
 
 ## 修改门禁
