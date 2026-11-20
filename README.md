@@ -2,7 +2,7 @@
 
 `rpc-api` 是 Java 微服务之间的 Dubbo RPC 契约包，只维护接口、DTO、枚举和值对象。
 
-- Maven 坐标：`com:rpc-api:1.0.9`
+- Maven 坐标：`com:rpc-api:1.1.0`
 - Java 版本：21
 - 主要消费者：`user`、`message`、`ai`、`ai-agent`、`gateway`
 - 职责边界：不包含 provider 实现、controller、数据库访问、Spring Boot 启动类、Nacos 配置或业务运行时配置。
@@ -18,7 +18,7 @@
 业务服务通过下面的坐标引入：
 
 ```gradle
-implementation "com:rpc-api:1.0.9"
+implementation "com:rpc-api:1.1.0"
 ```
 
 ## 契约归属
@@ -40,7 +40,7 @@ bash scripts/check-secrets.sh
 ./gradlew publish
 ```
 
-个人制品保持 `com:rpc-api:1.0.9`，公共能力库使用 `com:utils:1.6.6`；美联对应制品使用 `com.kellen:rpc-api` 和 `com.kellen:utils`。两边共用同一个阿里云 Maven 地址，通过 group 隔离制品路径并独立发布版本。个人消费者必须引用 `com` 坐标，不能混用美联制品；Java package `com.kellen.*` 与 Maven group 无关。发布前检查目标版本是否已存在，已有 release 不重复覆盖。
+个人制品保持 `com:rpc-api:1.1.0`，公共能力库使用 `com:utils:1.7.2`；美联对应制品使用 `com.kellen:rpc-api` 和 `com.kellen:utils`。两边共用同一个阿里云 Maven 地址，通过 group 隔离制品路径并独立发布版本。个人消费者必须引用 `com` 坐标，不能混用美联制品；Java package `com.kellen.*` 与 Maven group 无关。发布前检查目标版本是否已存在，已有 release 不重复覆盖。
 
 ## AI 编程规范
 
@@ -57,3 +57,5 @@ AI 或人类修改本仓库前先读：
 `1.0.8` 兼容新增 `AuthSessionRpcService.resolveAccessIdentity(String)` 和 `AuthSessionIdentityRpcDTO`，保留此前全部契约。终端 access token 只作为认证中心的验证输入，不记录或回传；输出仅包含已验证 userId/tenantId。provider 在 user，直接 consumer 为 ai / ai-agent；它们必须完成签名、生命周期和有效账号/租户验证，不能从正文或服务 HMAC 断言业务身份。
 
 `1.0.9` 只把编译基线改为 Java 21、Gradle wrapper 升到 9.9.1（第1阶段底座升级），契约与依赖不变；消费者须运行在 Java 21。
+
+`1.1.0` 新增消息事件契约 `com.kellen.rpc.user.event.UserAccountCreatedEvent`（账号已创建：user 在事务提交后经 RocketMQ 发出，message 收到后发欢迎站内信），字段为事件 ID、发生时刻、租户 ID、用户 ID、用户名与昵称；其余契约不变。跨服务的消息事件类放 `com.kellen.rpc.<领域>.event` 包。

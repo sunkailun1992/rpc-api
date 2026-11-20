@@ -17,7 +17,7 @@
 ## 不适用项
 
 - 默认不使用 `@SpringBootTest`，因为本仓库没有 Spring Boot 应用。
-- 默认不连接 Nacos、数据库、Redis、RabbitMQ 或真实 Dubbo 注册中心。
+- 默认不连接 Nacos、数据库、Redis、RocketMQ 或真实 Dubbo 注册中心。
 - 不在本仓库测试 provider 实现或 consumer 调用逻辑。
 
 ## 测试稳定性

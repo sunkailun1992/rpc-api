@@ -13,6 +13,7 @@
 - 契约统一放在 `com.kellen.rpc.<domain>`。
 - 用户中心契约放在 `com.kellen.rpc.user`。
 - 新领域按业务边界建包，例如 `com.kellen.rpc.message`、`com.kellen.rpc.ai`、`com.kellen.rpc.rag`。
+- 跨服务的消息事件类放 `com.kellen.rpc.<领域>.event`，例如 `com.kellen.rpc.user.event.UserAccountCreatedEvent`。规则同 DTO（实现 `Serializable`、普通 getter/setter、字段只增不删），另带事件 ID 供消费方去重；不放凭据与完整个人信息。收发用法见 utils 的消息队列规范 `docs/ai-coding/MQ_SPEC.md`。
 
 ## 接口规则
 
